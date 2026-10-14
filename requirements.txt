@@ -1,0 +1,4 @@
+PyQt6
+psutil
+# Only for scripts\create_character_colors.py
+Pillow
