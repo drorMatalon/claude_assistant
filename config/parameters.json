@@ -1,31 +1,25 @@
 {
     "hooks": {
         "response_start": {
-            "enabled": true,
-            "handler": "response_start.py"
+            "enabled": true
         },
         "tool_start": {
-            "enabled": true,
-            "handler": "tool_start.py"
+            "enabled": true
         },
         "tool_end": {
-            "enabled": true,
-            "handler": "tool_end.py"
+            "enabled": true
         },
         "response_end": {
-            "enabled": true,
-            "handler": "response_end.py"
+            "enabled": true
         }
     },
     "character": {
-        "image_thinking": "data/claude_bot.jpg",
+        "image_thinking": "data/claude_bot_orange.png",
         "image_tool_running": "data/claude_bot_red.png",
         "image_done": "data/claude_bot_green.png",
-        "done_seconds": 3,
-        "agent_check_seconds": 1,
+        "done_display_seconds": 4,
+        "polling_seconds": 2,
         "height": 120,
-        "margin": 24,
-        "port": 50556,
-        "position_file": "outputs/character_position.json"
+        "margin": 24
     }
 }

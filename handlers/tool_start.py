@@ -3,12 +3,11 @@
 # =========================================
 # Imports and defines
 # =========================================
-from lib.common_functions import load_config, send_window_command
+from handlers.common_functions import MODE_TOOL_RUNNING, write_mode
 
 # =========================================
 # Classes and functions
 # =========================================
-def handle(agent, hook_input):
-    """Tells the window a terminal command is running, so the character turns red."""
-    cfg = load_config()
-    send_window_command(cfg, "tool_start", attempts = 8)
+def handle_tool_start():
+    """Writes the tool running mode, so the character turns red."""
+    write_mode(MODE_TOOL_RUNNING)

@@ -3,12 +3,11 @@
 # =========================================
 # Imports and defines
 # =========================================
-from lib.common_functions import load_config, send_window_command
+from handlers.common_functions import delete_alive_file
 
 # =========================================
 # Classes and functions
 # =========================================
-def handle(agent, hook_input):
-    """Tells the window the response is done; it turns green and closes itself after a few seconds."""
-    cfg = load_config()
-    send_window_command(cfg, "end", attempts = 20)
+def handle_response_end():
+    """Deletes the alive file; the window sees it is gone, turns green and closes itself after a few seconds."""
+    delete_alive_file()

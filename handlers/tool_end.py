@@ -3,12 +3,11 @@
 # =========================================
 # Imports and defines
 # =========================================
-from lib.common_functions import load_config, send_window_command
+from handlers.common_functions import MODE_THINKING, write_mode
 
 # =========================================
 # Classes and functions
 # =========================================
-def handle(agent, hook_input):
-    """Tells the window a terminal command finished; it turns orange once no command is left running."""
-    cfg = load_config()
-    send_window_command(cfg, "tool_end", attempts = 8)
+def handle_tool_end():
+    """Writes the thinking mode, so the character turns back to orange."""
+    write_mode(MODE_THINKING)
