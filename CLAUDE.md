@@ -33,7 +33,7 @@ Hooks live in the user settings file: **`C:\Users\<user>\.claude\settings.json`*
 Add the `"hooks"` block below as a top-level key of that JSON.
 - **If the file already has a `"hooks"` key, merge these events into it.** Don't replace it, or other hooks will be lost.
 - **Fix the two paths if needed:** the Python interpreter (`C:/Python314/python.exe`) and the project folder
-  (`C:/Users/drorm/main_dir/programming/scripts/claude_assistant`). Use forward slashes.
+  (`C:/Users/drorm/main_dir/programming/claude_assistant`). Use forward slashes.
 
 ```json
 "hooks": {
@@ -43,7 +43,7 @@ Add the `"hooks"` block below as a top-level key of that JSON.
         {
           "type": "command",
           "command": "C:/Python314/python.exe",
-          "args": ["C:/Users/drorm/main_dir/programming/scripts/claude_assistant/hook_notify.py", "claude", "response_start"],
+          "args": ["C:/Users/drorm/main_dir/programming/claude_assistant/hook_notify.py", "claude", "response_start"],
           "async": true,
           "timeout": 10
         }
@@ -57,7 +57,7 @@ Add the `"hooks"` block below as a top-level key of that JSON.
         {
           "type": "command",
           "command": "C:/Python314/python.exe",
-          "args": ["C:/Users/drorm/main_dir/programming/scripts/claude_assistant/hook_notify.py", "claude", "tool_start"],
+          "args": ["C:/Users/drorm/main_dir/programming/claude_assistant/hook_notify.py", "claude", "tool_start"],
           "async": true,
           "timeout": 10
         }
@@ -71,7 +71,7 @@ Add the `"hooks"` block below as a top-level key of that JSON.
         {
           "type": "command",
           "command": "C:/Python314/python.exe",
-          "args": ["C:/Users/drorm/main_dir/programming/scripts/claude_assistant/hook_notify.py", "claude", "tool_end"],
+          "args": ["C:/Users/drorm/main_dir/programming/claude_assistant/hook_notify.py", "claude", "tool_end"],
           "async": true,
           "timeout": 10
         }
@@ -85,7 +85,7 @@ Add the `"hooks"` block below as a top-level key of that JSON.
         {
           "type": "command",
           "command": "C:/Python314/python.exe",
-          "args": ["C:/Users/drorm/main_dir/programming/scripts/claude_assistant/hook_notify.py", "claude", "tool_end"],
+          "args": ["C:/Users/drorm/main_dir/programming/claude_assistant/hook_notify.py", "claude", "tool_end"],
           "async": true,
           "timeout": 10
         }
@@ -98,7 +98,7 @@ Add the `"hooks"` block below as a top-level key of that JSON.
         {
           "type": "command",
           "command": "C:/Python314/python.exe",
-          "args": ["C:/Users/drorm/main_dir/programming/scripts/claude_assistant/hook_notify.py", "claude", "response_end"],
+          "args": ["C:/Users/drorm/main_dir/programming/claude_assistant/hook_notify.py", "claude", "response_end"],
           "async": true,
           "timeout": 10
         }
