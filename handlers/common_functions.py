@@ -9,9 +9,9 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent
 CONFIG_PATH = PROJECT_DIR / "config" / "parameters.json"
 STATE_DIR = PROJECT_DIR / "state"
 # The window lives while this file exists: response_start creates it, response_end deletes it
-ALIVE_PATH = STATE_DIR / ".alive"
+ALIVE_PATH = STATE_DIR / "alive"
 # Holds one of the MODE_ numbers below, so the window knows which character to show
-MODE_PATH = STATE_DIR / ".mode"
+MODE_PATH = STATE_DIR / "mode"
 MODE_THINKING = 1
 MODE_TOOL_RUNNING = 2
 DELETE_ATTEMPTS = 10

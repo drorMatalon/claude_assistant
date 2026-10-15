@@ -16,8 +16,8 @@ This file is for both humans and Claude agents who are asked to set it up.
 Claude Code has **hooks**: commands it runs at fixed moments (prompt sent, tool started, response finished...).
 Every hook here runs the same script, `hook_notify.py <event>`. That script checks the event is enabled in
 `config\parameters.json` and calls `handlers\<event>.py`. The handlers talk to the character window
-(`handlers\character_window.py`, PyQt6) through two files in `state\`: `.mode` holds a number (`MODE_THINKING`,
-`MODE_TOOL_RUNNING` in `handlers\common_functions.py`), and `.alive` exists while a response runs; when it is deleted
+(`handlers\character_window.py`, PyQt6) through two files in `state\`: `mode` holds a number (`MODE_THINKING`,
+`MODE_TOOL_RUNNING` in `handlers\common_functions.py`), and `alive` exists while a response runs; when it is deleted
 the window turns green and closes. The window watches them with `QFileSystemWatcher`. The first handler starts the window; a
 `QLockFile` (`state\.lock`) keeps it to one window.
 
@@ -124,6 +124,24 @@ Why it looks like this:
    python hook_notify.py response_start
    python hook_notify.py response_end
    ```
+
+## Optional: the Tracker
+`scripts\tracker.py` shows the character while any command runs (not only Claude Code) and turns it green when the command ends.
+It sets `TRACKER_MODE`, so the window shows `"image_tracker"` from `config\parameters.json` instead of orange/red.
+
+To use it from any folder, add a `Tracker` function to the user's PowerShell profile (the file `$PROFILE` points to;
+create it if missing, and append, don't replace what is there):
+```powershell
+function Tracker {
+    python "<project_dir_path>\scripts\tracker.py" $args
+}
+```
+Replace `<project_dir_path>` with the full path of this project folder. Then open a new terminal (or run `. $PROFILE`) and use it:
+```powershell
+Tracker py main.py
+Tracker matlab -batch "my_script"
+```
+- MATLAB needs `-batch` or `-wait`; plain `matlab` returns at once, so the character would end right away.
 
 ## Turning it off
 - One event: set `"enabled": false` for it in `config\parameters.json` (no restart needed).
