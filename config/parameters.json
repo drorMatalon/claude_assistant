@@ -17,7 +17,6 @@
         "image_thinking": "data/claude_bot_orange.png",
         "image_tool_running": "data/claude_bot_red.png",
         "image_done": "data/claude_bot_green.png",
-        "image_tracker": "data/donki_image.png",
         "done_display_seconds": 4,
         "polling_seconds": 2,
         "height": 120,

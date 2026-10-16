@@ -32,8 +32,6 @@ A little desktop Claude that shows what Claude Code is doing: ðŸŸ  thinking, ðŸ”
 
 Each one can be turned off with `"enabled"` in `config\parameters.json`.
 
-**Tracker (supported script):** `scripts\tracker.py <command>` tracks a powershell command e.g. `Tracker py main.py` (setup in CLAUDE.md).
-
 ## Manual test
 The SW polls the perent PID and checks that its still alive. If not - its close the GUI.
 In order to perform manual test its importent to use the full python.exe path in order to make the calling terminal the parent proccess.
@@ -43,4 +41,3 @@ In order to perform manual test its importent to use the full python.exe path in
 2. C:\Python314\python.exe hook_notify.py tool_start
 3. C:\Python314\python.exe hook_notify.py tool_end
 4. C:\Python314\python.exe hook_notify.py response_end
-5. Tracker py main.py

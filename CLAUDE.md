@@ -125,24 +125,6 @@ Why it looks like this:
    python hook_notify.py response_end
    ```
 
-## Optional: the Tracker
-`scripts\tracker.py` shows the character while any command runs (not only Claude Code) and turns it green when the command ends.
-It sets `TRACKER_MODE`, so the window shows `"image_tracker"` from `config\parameters.json` instead of orange/red.
-
-To use it from any folder, add a `Tracker` function to the user's PowerShell profile (the file `$PROFILE` points to;
-create it if missing, and append, don't replace what is there):
-```powershell
-function Tracker {
-    python "<project_dir_path>\scripts\tracker.py" $args
-}
-```
-Replace `<project_dir_path>` with the full path of this project folder. Then open a new terminal (or run `. $PROFILE`) and use it:
-```powershell
-Tracker py main.py
-Tracker matlab -batch "my_script"
-```
-- MATLAB needs `-batch` or `-wait`; plain `matlab` returns at once, so the character would end right away.
-
 ## Turning it off
 - One event: set `"enabled": false` for it in `config\parameters.json` (no restart needed).
 - Everything: remove the hook entries above from `settings.json`.

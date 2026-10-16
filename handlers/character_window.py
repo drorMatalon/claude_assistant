@@ -1,14 +1,12 @@
 # Small always-on-top window with the agent character. Started by the response_start handler, then driven by files in state\:
 # mode says what the agent does (thinking = orange, tool running = red); when alive is deleted it turns green and closes.
 # alive holds the agent PID; the window also vanishes if that process dies.
-# When started by scripts\tracker.py (TRACKER_MODE set), it shows only the tracker image.
 # Usage: pythonw -m handlers.character_window   (from the project folder, so its imports are found)
 
 # =========================================
 # Imports and defines
 # =========================================
 import json
-import os
 import sys
 
 import psutil
@@ -31,7 +29,6 @@ class CharacterWindow(QLabel):
     def __init__(self, pixmaps, done_display_seconds, polling_seconds):
         super().__init__()
         self.pixmaps = pixmaps
-        self.tracker_mode = "TRACKER_MODE" in os.environ
         self.agent_pid = None
         self.drag_offset = None
         self.close_timer = QTimer(self)
@@ -54,19 +51,13 @@ class CharacterWindow(QLabel):
             | Qt.WindowType.NoDropShadowWindowHint
         )
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        if self.tracker_mode:
-            self.resize(pixmaps["tracker"].size())
-        else:
-            self.resize(pixmaps["thinking"].size())
+        self.resize(pixmaps["thinking"].size())
         self.update_state()
 
     def update_state(self):
         """Re-reads the state files and shows the matching character; green and closing once the alive file is gone."""
         if not ALIVE_PATH.exists():
-            if self.tracker_mode:
-                self.setPixmap(self.pixmaps["tracker"])
-            else:
-                self.setPixmap(self.pixmaps["done"])
+            self.setPixmap(self.pixmaps["done"])
             if not self.close_timer.isActive():
                 self.close_timer.start()
             return
@@ -76,9 +67,7 @@ class CharacterWindow(QLabel):
             self.agent_pid = agent_pid
         if MODE_PATH.exists() and str(MODE_PATH) not in self.watcher.files():
             self.watcher.addPath(str(MODE_PATH))
-        if self.tracker_mode:
-            self.setPixmap(self.pixmaps["tracker"])
-        elif read_mode() == MODE_TOOL_RUNNING:
+        if read_mode() == MODE_TOOL_RUNNING:
             self.setPixmap(self.pixmaps["tool_running"])
         else:
             self.setPixmap(self.pixmaps["thinking"])
@@ -116,7 +105,6 @@ def character_window(cfg):
         "thinking": PROJECT_DIR / character_cfg["image_thinking"],
         "tool_running": PROJECT_DIR / character_cfg["image_tool_running"],
         "done": PROJECT_DIR / character_cfg["image_done"],
-        "tracker": PROJECT_DIR / character_cfg["image_tracker"],
     }
     done_display_seconds = float(character_cfg["done_display_seconds"])
     polling_seconds = float(character_cfg["polling_seconds"])
